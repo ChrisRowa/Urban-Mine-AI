@@ -1,0 +1,92 @@
+{
+  "components": [
+    {
+      "id": "W001",
+      "name": "Window Panel",
+      "material": "Glass + Aluminum",
+      "connectionType": "Bolted",
+      "condition": "Good",
+      "quantity": 12,
+      "location": "Floor 2",
+      "dimensions": "1.2m x 1.5m",
+      "estimatedAge": 8
+    },
+    {
+      "id": "S001",
+      "name": "Steel Beam",
+      "material": "Steel",
+      "connectionType": "Bolted",
+      "condition": "Good",
+      "quantity": 8,
+      "location": "Foundation",
+      "dimensions": "6m x 0.3m x 0.3m",
+      "estimatedAge": 15
+    },
+    {
+      "id": "D001",
+      "name": "Wooden Door",
+      "material": "Wood",
+      "connectionType": "Screwed",
+      "condition": "Fair",
+      "quantity": 6,
+      "location": "Floor 1",
+      "dimensions": "2.1m x 0.9m",
+      "estimatedAge": 20
+    },
+    {
+      "id": "C001",
+      "name": "Concrete Wall Panel",
+      "material": "Concrete",
+      "connectionType": "Glued",
+      "condition": "Poor",
+      "quantity": 4,
+      "location": "Exterior",
+      "dimensions": "3m x 2.5m x 0.2m",
+      "estimatedAge": 25
+    },
+    {
+      "id": "R001",
+      "name": "Roofing Sheet",
+      "material": "Metal",
+      "connectionType": "Screwed",
+      "condition": "Good",
+      "quantity": 20,
+      "location": "Roof",
+      "dimensions": "2m x 1m",
+      "estimatedAge": 10
+    },
+    {
+      "id": "F001",
+      "name": "Floor Tile",
+      "material": "Ceramic",
+      "connectionType": "Adhesive",
+      "condition": "Fair",
+      "quantity": 100,
+      "location": "Floor 1",
+      "dimensions": "0.3m x 0.3m",
+      "estimatedAge": 12
+    },
+    {
+      "id": "P001",
+      "name": "Plasterboard Panel",
+      "material": "Gypsum",
+      "connectionType": "Screwed",
+      "condition": "Good",
+      "quantity": 15,
+      "location": "Interior Walls",
+      "dimensions": "2.4m x 1.2m x 0.012m",
+      "estimatedAge": 5
+    },
+    {
+      "id": "E001",
+      "name": "Electrical Conduit",
+      "material": "PVC",
+      "connectionType": "Clipped",
+      "condition": "Good",
+      "quantity": 30,
+      "location": "All Floors",
+      "dimensions": "3m length",
+      "estimatedAge": 8
+    }
+  ]
+}

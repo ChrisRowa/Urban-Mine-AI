@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Connection Test</h1>
+    <button onclick="testConnection()">Test API Connection</button>
+    <div id="result"></div>
+
+    <script>
+        async function testConnection() {
+            try {
+                console.log('Testing API connection...');
+                
+                // Test basic health endpoint first
+                const healthResponse = await fetch('/api/health');
+                console.log('Health check status:', healthResponse.status);
+                const healthData = await healthResponse.json();
+                console.log('Health check data:', healthData);
+                
+                // Test analysis endpoint with minimal data
+                const testPayload = {
+                    components: [{
+                        id: "test",
+                        name: "Test Component",
+                        material: "Steel",
+                        connectionType: "Bolted", 
+                        condition: "Good",
+                        quantity: 1,
+                        location: "Test"
+                    }]
+                };
+
+                console.log('Sending test payload:', testPayload);
+
+                const analysisResponse = await fetch('/api/analysis/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testPayload)
+                });
+
+                console.log('Analysis response status:', analysisResponse.status);
+                console.log('Analysis response headers:', Object.fromEntries(analysisResponse.headers));
+
+                if (analysisResponse.ok) {
+                    const data = await analysisResponse.json();
+                    console.log('Analysis response data:', data);
+                    document.getElementById('result').innerHTML = `
+                        <h3>✅ API Working!</h3>
+                        <p><strong>Status:</strong> ${analysisResponse.status}</p>
+                        <p><strong>Response:</strong></p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                        <button onclick="window.location.href='/upload?from=upload'">Go to Upload Page</button>
+                    `;
+                } else {
+                    const errorText = await analysisResponse.text();
+                    console.log('Analysis error text:', errorText);
+                    document.getElementById('result').innerHTML = `
+                        <h3>❌ API Error</h3>
+                        <p><strong>Status:</strong> ${analysisResponse.status}</p>
+                        <p><strong>Error:</strong></p>
+                        <pre>${errorText}</pre>
+                        <button onclick="window.location.href='/upload?from=upload'">Go to Upload Page</button>
+                    `;
+                }
+            } catch (error) {
+                console.error('Test error:', error);
+                document.getElementById('result').innerHTML = `
+                    <h3>💥 Test Failed</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <button onclick="window.location.href='/upload?from=upload'">Go to Upload Page</button>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

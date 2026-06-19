@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Upload</title>
+</head>
+<body>
+    <h1>Debug Upload Test</h1>
+    <button onclick="testUpload()">Test Upload API</button>
+    <div id="result"></div>
+
+    <script>
+        async function testUpload() {
+            const testData = {
+                components: [
+                    {
+                        id: "test1",
+                        name: "Test Steel Beam",
+                        material: "Steel", 
+                        connectionType: "Bolted",
+                        condition: "Good",
+                        quantity: 5,
+                        location: "Foundation"
+                    }
+                ],
+                userConfig: {
+                    materials: [
+                        {
+                            name: "Steel",
+                            baseValue: 200,
+                            co2Factor: 1.8,
+                            reusabilityScore: 20
+                        }
+                    ]
+                }
+            };
+
+            try {
+                console.log('Sending data:', testData);
+                
+                const response = await fetch('/api/analysis/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', [...response.headers]);
+                
+                const result = await response.json();
+                console.log('Response data:', result);
+                
+                document.getElementById('result').innerHTML = `
+                    <h3>Response Status: ${response.status}</h3>
+                    <pre>${JSON.stringify(result, null, 2)}</pre>
+                `;
+                
+                if (response.ok) {
+                    alert('Upload successful! Check console for details.');
+                } else {
+                    alert('Upload failed! Check console for errors.');
+                }
+            } catch (error) {
+                console.error('Upload error:', error);
+                document.getElementById('result').innerHTML = `<h3>Error: ${error.message}</h3>`;
+            }
+        }
+    </script>
+</body>
+</html>
